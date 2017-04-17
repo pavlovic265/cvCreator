@@ -1,0 +1,29 @@
+<div class="row top-buffer">
+    <div class="col-lg-6 col-md-6 col-xs-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for skill"
+                    ng-change="skillCtrl.typing()" ng-model="skillCtrl.newSkill">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="skillCtrl.add()">Add</button>
+            </span>
+        </div>
+        <div ng-if="skillCtrl.isTypeing">
+            <ul class="list-group skillSearch" >
+                <li class="list-group-item item-skill" 
+                    ng-repeat="(key, skill) in skillCtrl.leftSkills | filter:skillCtrl.newSkill as results"
+                    ng-click="skillCtrl.add(skill)" ng-bind="::skill.name">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-xs-12 top-buffer">
+        <ul class="list-group">
+            <li class="list-group-item pull-left" 
+                ng-repeat="(key, skill) in skillCtrl.userSkills">
+                {{skill.name}}
+                <span class="glyphicon glyphicon-remove js-remove-skill" aria-hidden="true"
+                    ng-click="skillCtrl.remove(skill)"></span>
+            </li>
+        </ul>
+    </div>
+</div>

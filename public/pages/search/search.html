@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <input type="text" class="form-control search-spacing" placeholder="Search for user by username..." ng-model="searchCtrl.user.username"
+            ng-change="searchCtrl.searching()" />
+        <input type="text" class="form-control search-spacing" placeholder="Search for user by firstname..." ng-model="searchCtrl.user.firstname"
+            ng-change="searchCtrl.searching()" />
+        <input type="text" class="form-control search-spacing" placeholder="Search for user by lastname..." ng-model="searchCtrl.user.lastname"
+            ng-change="searchCtrl.searching()" />
+    </div>
+    <div class="row col-lg-12 col-md-12 col-xs-12 search" ng-repeat="user in searchCtrl.users | limitTo: searchCtrl.limit">
+        <div class="col-lg-3 col-md-3 col-xs-3">
+            <img ng-src="{{user.image}}" width="50px" height="60px">
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-6 search-top text-left">
+            {{user.firstname + ' ' + user.lastname + ' ( '+user.username+' ) '}} 
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-3 search-top">
+            <a ng-href='#!/profile/{{user.username}}' class="btn btn-warning" ng-click="searchCtrl.rememberState()">See profile</a>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <ul uib-pagination total-items="searchCtrl.totalItems" ng-model="searchCtrl.currentPage" ng-change="searchCtrl.pageChanged()"></ul>
+    </div>
+</div>

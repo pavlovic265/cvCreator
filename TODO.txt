@@ -1,0 +1,29 @@
+
+REFACTOR WHOLE FUCKING CODE!!!!
+
+Login (done)
+
+Registraion
+    - Poslati email posle registracije x
+
+User info (done)
+
+Messages
+    - Error
+    - Success
+
+Skill (done)
+
+Project (done)
+
+Footer 
+    - Add linkedin link, facebook, twitter, google
+
+Validacija (done)
+
+Profili (done)
+
+MARKO
+    - Procitati jos jednom kako passport
+    - Napisati komentare za fe
+    - Ispisati komentare na be gde fale

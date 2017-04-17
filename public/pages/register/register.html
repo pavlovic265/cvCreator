@@ -1,0 +1,75 @@
+<div class="col-md-4">
+  <h1>Register</h1>
+  <form class="form" name="registerForm" ng-submit="regCtrl.register()">
+    <div class="form-group">
+      <label>First name</label>
+      <input type="text" class="form-control" name="firstname" ng-model="regCtrl.firstname" required 
+        ng-pattern="regCtrl.regex.firstLastName" ng-change="regCtrl.checkErrors()"/>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" name="lastname" ng-model="regCtrl.lastname" required
+      ng-pattern="regCtrl.regex.firstLastName" ng-change="regCtrl.checkErrors()"/>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" name="email" id="email" ng-model="regCtrl.email" required
+          ng-pattern="regCtrl.regex.email" ng-change="regCtrl.checkErrors()"/>
+    </div>
+    <div class="form-group">
+      <label>Date of birth</label>
+      <p class="input-group">
+        <input type="text" class="form-control" name="birthFormat"
+               uib-datepicker-popup="{{regCtrl.birthFormat.format}}"
+               datepicker-options="regCtrl.birthFormat.options" is-open="regCtrl.birthFormat.opened"
+               ng-model="regCtrl.birthFormat.date" placeholder="{{regCtrl.birthFormat.format}}"
+               readonly required ng-pattern="regCtrl.regex.birthFormat" ng-change="regCtrl.checkErrors()"/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="regCtrl.birthFormat.open()">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+        </span>
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Gender</label>
+      <div class="form-group col-lg-12">
+        <label class="btn btn-default col-lg-5" name="gender" ng-model="regCtrl.gender" 
+               uib-btn-radio="'Male'">Male</label>
+        <label class="btn btn-default col-lg-offset-2 col-lg-5" name="gender" ng-model="regCtrl.gender" 
+               uib-btn-radio="'Female'">Female</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" name="username" ng-model="regCtrl.username" 
+             required ng-pattern="regCtrl.regex.username" ng-change="regCtrl.checkErrors()" />
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" name="password" ng-model="regCtrl.password" 
+             required ng-minlength="8" ng-pattern="regCtrl.regex.password"/>
+    </div>
+    <div class="form-group">
+      <label>Retype password</label>
+      <input type="password" class="form-control" name="reTypePassword" ng-model="regCtrl.reTypePassword"  
+             required ng-minlength="8" password-check="{{regCtrl.password}}" ng-pattern="regCtrl.regex.password" />
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary" ng-disabled="disabled">Register</button>
+      <button type="reset" class="btn btn-default" ng-disabled="disabled">Reset</button>
+    </div>
+  </form>
+</div>
+<div class="col-md-3" ng-show="regCtrl.error.errorRegister && regCtrl.error.allErrors">
+    <h1>Errors</h1>
+    <div class="alert alert-danger">
+      <div ng-repeat="field in registerForm">
+        <div ng-show="field.$error.required"><b>{{field.$name}} is required!</b></div>
+        <div ng-show="field.$error.passwordCheck"><b>passwords do not match!</b></div>
+        <div ng-show="field.$error.minlength"><b>{{field.$name}} need to be at least 8 characters!</b></div>
+        <div ng-show="field.$error.pattern"><b>{{field.$name}} is invalid!</b></div>
+        <div ng-show="field.$error.date"><b>{{field.$name}} is wrong format!</b></div>
+      </div>
+    </div>
+</div>

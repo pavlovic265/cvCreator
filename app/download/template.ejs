@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>SuitArt Business Card</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        * { padding: 0px; margin: 0px; }
+        body { padding: 0px; margin: 0px; }
+        .top-bottom-buffer { margin: 40px 0 40px 0; }
+        .left-buffer { width: 300px; text-align: right; }
+        .header { text-align: center; }
+        .width100 { width: 590px;}
+        .width50 { width: 250px }
+        .width70 { width: 400px;}
+        .width30 { width: 170px;}
+        .height200 { height: 200px; }
+        .description { word-wrap: break-word; }
+    </style>
+  </head>
+  <body>
+	<div class="container width100">
+        <div class="width100 header" style="height: 25px;">
+            <h3><strong>Curriculum Vitae</strong></h3>
+        </div>
+        <div class="width100 top-bottom-buffer">
+            <h4><strong>Info</strong></h4>
+        </div>
+        <div class="width100">
+        <div class="width100" style="height: 200px;">
+            <div class="width30 pull-left" style="display: inline-block;margin-right: 30px;">
+                <img src="<%= imgSrc %>" width="150px" height="200px"/>
+            </div>
+            <div class="width30 pull-left" style="display: inline-block; vertical-align: middle;">
+                <div class="row form-group">
+                    <label>Full name: </label>
+                    <span class="left-buffer"><%= user.firstname + ' ' + user.lastname %></span>
+                </div>
+                <div class="row form-group">
+                    <label>Date of birth: </label>
+                    <span class="left-buffer"><%= moment(user.birth).format('MM/DD/YYYY') %></span>
+                </div>
+                <div class="row form-group">
+                    <label>Email: </label>
+                    <span class="left-buffer"><%= user.email %></span>
+                </div>
+                <div class="row form-group">
+                    <label>Contact: </label>
+                    <span class="left-buffer"><%= user.contact %></span>
+                </div>
+            </div>
+        </div>
+        <div class="width100 top-bottom-buffer">
+            <h4><strong>Skills</strong></h4>
+        </div>
+        <div class="width100" style="height: 42px;">
+            <ul class="list-group width100" style="float: left;">
+                <% user.skills.forEach(function(skill){ %>
+                    <li style="display: block; padding: 10px 15px; margin-bottom: -1px; background-color: #fff; border: 1px solid #ddd; float: left;" >
+                        <%= skill.name %>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <div class="width100 top-bottom-buffer">
+            <h4><strong>Projects</strong></h4>
+        </div>
+        <% user.projects.forEach(function(project){ %>
+<%
+        var length = 1;
+        if (project.description.length >= 87) {
+            length = parseInt(project.description.length / 87);
+        }
+        var heightProject = length*25+25+50+50;
+%>
+            <div class="width100" style="<%= 'height:' + ( heightProject ) + 'px;' %> ">
+                <div class="width100">
+                    <label>Title</label>
+                </div>
+                <div  class="width100">
+                    <%= project.title %>
+                </div>
+                <div class="width100">
+                    <label>Link</label>
+                </div>
+                <div  class="width100">
+                    <a href="<%= project.link %>" target="_blank"><%= project.link %></a>
+                </div>
+                <div class="width100">
+                    <label>Description</label>
+                </div>
+                <div  class="width100 description">
+                    <%= project.description %>
+                </div>
+                <hr/>
+            </div>
+        <% }); %>
+	</div>
+  </body>
+</html>

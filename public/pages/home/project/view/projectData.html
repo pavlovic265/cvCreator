@@ -1,0 +1,16 @@
+<div class="row top-buffer project-split">
+    <project-data-directive-edit ng-show="project.isEdit" project="project">            
+    </project-data-directive-edit>
+    <project-data-directive-show ng-show="!project.isEdit" project="project">
+    </project-data-directive-show>
+    <div class="col-lg-6 col-md-6 col-xs-6 top-buffer pull-right form-group">
+        <button type="button" class="btn btn-sm btn-info pull-right col-lg-2" 
+                ng-click="project.edit(project)" ng-show="!project.isEdit">Edit</button>
+        <button type="button" class="btn btn-sm btn-success pull-right col-lg-2 btn-space" 
+                ng-show="project.isEdit" ng-click="project.save()">Save</button>
+        <button type="button" class="btn btn-sm btn-danger pull-right col-lg-2 btn-space" 
+                ng-show="project.isEdit" ng-click="project.Cancel()">Cancel</button>
+        <button type="button" class="btn btn-sm btn-warning pull-right col-lg-2" 
+                ng-show="project.isEdit" ng-click="project.delete()">Delete</button>
+    </div>
+</div>

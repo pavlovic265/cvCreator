@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-xs-3 col-lg-offset-4 col-md-offset-4 col-xs-offset-4">
+        <form ng-submit="loginCtrl.login()" name="loginForm">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <label for="username">Username: </label>
+                    <input type="text" class="form-control" 
+                            ng-model="loginCtrl.username" ng-change="loginCtrl.checkErrors()" 
+                            name="username" ng-pattern="loginCtrl.regex.username" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <label for="password">Password: </label>
+                    <input type="password" class="form-control" 
+                             ng-model="loginCtrl.password" ng-change="loginCtrl.checkErrors()"
+                             name="password" ng-pattern="loginCtrl.regex.password" required/>
+                </div>
+            </div>
+            <div class="row top-buffer">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="alert alert-danger" ng-show="loginCtrl.error.loginError && loginCtrl.error.allErrors">
+                        <div ng-repeat="field in loginForm">
+                            <div ng-show="field.$error.required"><b>{{field.$name}} is required!</b></div>
+                            <div ng-show="field.$error.pattern"><b>{{field.$name}} is invalid!</b></div>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" ng-show="loginCtrl.error.baError && !(loginCtrl.error.loginError && loginCtrl.error.allErrors)">
+                        <div><b>Username or password are not correct!</b></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    <input type="submit" value="Login" ng-submit="loginCtrl.submitData()" 
+                            class="btn btn-primary form-control" />
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    <input type="button" value="Reset" ng-click="loginCtrl.resetData()" class="btn btn-default form-control" />
+                </div>
+            </div>
+            <div class="row top-buffer">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <input type="button" value="Register" ng-click="loginCtrl.registration()"  class="btn btn-info form-control" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

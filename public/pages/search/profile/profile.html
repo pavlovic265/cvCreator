@@ -1,0 +1,22 @@
+<div class="row section-split">
+    <div class="col-lg-12 col-md-12 col-xs-12 row top-buffer">
+        <h4><strong>Info</strong></h4>
+    </div>
+    <a ng-href="/download/pdf/{{profileCtrl.user.username}}" target="_blanko"
+        class="btn btn-success pull-right" >Download {{profileCtrl.user.username}} CV</a>
+    <info-data-directive-show user="profileCtrl.user"></info-data-directive-show>
+</div>
+<div class="row section-split">
+    <div class="col-lg-12 col-md-12 col-xs-12 row top-buffer">
+        <h4><strong>Skills</strong></h4>
+    </div>
+    <skill-data-directive-show user-skills="profileCtrl.user.skills"></skill-data-directive-show>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12 row top-buffer">
+        <h4><strong>Projects</strong></h4>
+    </div>
+    <div class="project-split col-lg-12 col-md-12 col-xs-12 project-spacing row" ng-repeat="project in profileCtrl.user.projects">
+        <project-data-directive-show project="project"></project-data-directive-show>
+    </div>
+</div>

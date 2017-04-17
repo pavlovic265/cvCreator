@@ -1,0 +1,22 @@
+* { padding: 0px; margin: 0px; }
+body { padding: 0px; margin: 0px; }
+.top-buffer { margin-top:20px; }
+.bottom-buffer { margin-bottom: 20px; }
+.errorContainer{ width: 320px; position: fixed; z-index: 2; right: 0; top: 0; margin-top: 52px; }
+.btn-space { margin-left: 5px; }
+.skillSearch { position: absolute; z-index: 1; width: 100%; max-height: 206px; overflow: hidden; overflow-y: scroll; }
+.item-skill:hover { background: cornflowerblue;}
+.js-remove-skill:hover { color: darkred; }
+.project-split, .section-split { border-bottom: 1px solid lightslategray; padding-bottom: 10px; }
+.footer > div {bottom: 0; margin-top: 30px; height: 150px; background-color: #222; border-color: #080808; border-radius: 4px; }
+.search { margin: 10px; }
+.search-top { margin-top: 10px; }
+.project-spacing { padding-top: 40px; padding-bottom: 40px; }
+.project-description {  overflow-x: hidden; }
+.logo a { color: #fff; text-decoration: none; }
+.search-spacing { margin-bottom: 15px; }
+.footer-text { text-align: center; color: #fff; padding-top: 10px; }
+.footer-text h4 { display: inline; font-weight: bold; }
+.footer-text > div { font-weight: bold; }
+.min-height { min-height: 600px; }
+.footer-social { padding-top: 20px; }
