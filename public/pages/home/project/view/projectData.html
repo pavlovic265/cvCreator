@@ -11,6 +11,6 @@
         <button type="button" class="btn btn-sm btn-danger pull-right col-lg-2 btn-space" 
                 ng-show="project.isEdit" ng-click="project.Cancel()">Cancel</button>
         <button type="button" class="btn btn-sm btn-warning pull-right col-lg-2" 
-                ng-show="project.isEdit" ng-click="project.delete()">Delete</button>
+                ng-show="project.isEdit" ng-click="project.delete(project._id)">Delete</button>
     </div>
 </div>

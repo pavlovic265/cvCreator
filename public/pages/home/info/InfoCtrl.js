@@ -1,6 +1,6 @@
 var InfoController = angular.module('InfoCtrl',[])
-.controller('InfoController', ['$scope', '$rootScope', 'ValidationService', 'UserService', 'ErrorService',
-function($scope, $rootScope, ValidationService, UserService, ErrorService){
+.controller('InfoController', ['$scope', '$rootScope', 'ValidationService', 'UserService', 'ErrorService', 'AuthService',
+function($scope, $rootScope, ValidationService, UserService, ErrorService, AuthService){
 
 	var user = $scope.user;
 
@@ -74,6 +74,7 @@ function($scope, $rootScope, ValidationService, UserService, ErrorService){
 				UserService.uploadImage(this.user.newImage, this.user.newImage.name,
 					function(response){
 						_self.user.image = response.data.image;
+						AuthService.setImage( response.data.image);
 						delete _self.user.newImage;
 					},
 					function(){

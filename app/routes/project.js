@@ -24,9 +24,12 @@ router.post('/',
         if(err) {
             throw err;
         }
-        ProjectClass.addProject(req.user.id, req.body, function(){
+        ProjectClass.addProject(req.user.id, req.body, function(err, user){
+            if(err) {
+                throw err;
+            }
             res.status(200).json({
-                success: true
+                project: user.projects[user.projects.length-1]
             });
         });
 });

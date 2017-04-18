@@ -4,6 +4,6 @@
         class="bottom-buffer" project="projectCtrl.newProject"  regex="projectCtrl.regex">
     </project-directive-add>
 
-    <project-data-directive class="col-lg-12 col-md-12 col-xs-12" ng-repeat="project in projectCtrl.projects" project="project">
+    <project-data-directive class="col-lg-12 col-md-12 col-xs-12" ng-repeat="project in projectCtrl.projects track by $index" project="project">
     </project-data-directive>
 </div>

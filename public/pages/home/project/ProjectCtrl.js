@@ -1,7 +1,7 @@
 var ProjectController = angular.module('ProjectCtrl',[])
 
-.controller('ProjectController', ['$scope', 'ProjectService', 'ValidationService', 'AuthService',
-function($scope, ProjectService, ValidationService, AuthService){
+.controller('ProjectController', ['$scope', '$rootScope', 'ProjectService', 'ValidationService', 'AuthService',
+function($scope, $rootScope, ProjectService, ValidationService, AuthService){
 	$scope.$on('projectAddNew', function(){
 		$scope.projectCtrl.isAdd = true;
 	});
@@ -37,7 +37,8 @@ function($scope, ProjectService, ValidationService, AuthService){
 					save: function(){
 						this.isEdit = false;
 						var _self = this,
-							newProject = {title: this.title, link: this.link, description: this.description};
+							newProject = {title: this.title, link: this.link, description: this.description},
+							projects = $scope.projectCtrl.projects;
 
 						if(angular.equals(this.oldProject, {title: this.title, link: this.link, description: this.description})) {
 							return;
@@ -53,29 +54,23 @@ function($scope, ProjectService, ValidationService, AuthService){
 								description: this.description
 							},
 							function(){
-
-								AuthService.setProject({
-									_id: _self._id,
-									title: _self.title,
-									link: _self.link,
-									description: _self.description
-								});
+								AuthService.setProjects(projects);
 							},
 							function(){
 								$rootScope.$broadcast('hasError', 'project', 'edit');
 							});
 					},
-					delete: function() {
+					delete: function(_id) {
 						this.isEdit = false;
 						var projects = $scope.projectCtrl.projects;
 						for(var i = 0; i < projects.length; i++) {
-							if(projects[i]._id == this._id) {
+							if(projects[i]._id == _id) {
 								projects.splice(i, 1);
 								break;
 							}	
 						}
 
-						ProjectService.delete(this._id,
+						ProjectService.delete(_id,
 							function(){
 								AuthService.setProjects(projects);
 							},
@@ -103,8 +98,7 @@ function($scope, ProjectService, ValidationService, AuthService){
 			this.newProject = {
 						title: '',
 						link: '',
-						description: '',
-						mp_test: ''
+						description: ''
 					}
 		},
 		add: function() {
@@ -115,8 +109,8 @@ function($scope, ProjectService, ValidationService, AuthService){
 			angular.extend(this.newProject, extendProject);
 			ProjectService.add(this.newProject,
 				function(project){
-	                _self.projects.push(project);
-					AuthService.setProject(project);
+					_self.projects.push(project);
+					AuthService.setProjects(_self.projects)
 				},
 				function(){
 					$rootScope.$broadcast('hasError', 'project', 'add');

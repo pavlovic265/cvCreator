@@ -53,12 +53,16 @@ cvCreaterApp.service('AuthService', ['$http', '$location', 'ErrorService',
                             });
             },
 
+            setImage: function(image){
+                user.image = image;
+            },
+
             setInfo: function(newUserData){
                 user.firstname = newUserData.firstname;
                 user.lastname = newUserData.lastname;
                 user.birth = newUserData.birth;
                 user.email = newUserData.email;
-                if(!angular.isUndefind(newUserData.contact)) {
+                if(!angular.isUndefined(newUserData.contact)) {
                     user.contact = newUserData.contact;
                 }
             },
@@ -69,11 +73,8 @@ cvCreaterApp.service('AuthService', ['$http', '$location', 'ErrorService',
             
             setProjects: function(projects) {
                 user.projects = projects;
-            },
-
-            setProject: function(project){
-                user.projects.push(project);
             }
+
         }
         return returnObj;
     }

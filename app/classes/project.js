@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var Project = {
     addProject: function(id, project, callback){
-        UserModel.update({_id: id}, {$push: {projects: project}}, callback);
+        UserModel.findOneAndUpdate({_id: id}, {$push: {projects: project}}, { new: true }, callback);
     },
     updateProject: function(id, project, callback){
                         

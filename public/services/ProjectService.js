@@ -29,6 +29,7 @@ cvCreaterApp.service('ProjectService', ['$http', '$filter', 'ErrorService', 'Val
                 description: project.description
             })
             .then(function(response){
+                project._id = response.data.project._id;
                 callbackSuccess(project)
             })
             .catch(function(reason){
