@@ -6,7 +6,13 @@ var mongoose          = require('mongoose');
 var User = {
     createUser: function(newUser, callback){
         bcrypt.genSalt(10, function(err, salt) {
+            if(err){
+                throw err;
+            }
             bcrypt.hash(newUser.password, salt, function(err, hash) {
+                if(err) {
+                    throw err;
+                }
                 newUser.password = hash;
                 newUser.save(callback);
             });

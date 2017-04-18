@@ -3,15 +3,15 @@ var Schema = mongoose.Schema;
 
 
 var UserSchema = new Schema({
-  firstname: { type: String, index: true },
-  lastname:  { type: String },
-  email:  { type: String },
+  firstname: { type: String, index: true, required : true  },
+  lastname:  { type: String, required : true  },
+  email:  { type: String, required : true  },
   contact:  { type: String, default: '' },
   image: { type: String, default: '/images/default.png' },
-  username:  { type: String },
-  password:  { type: String },
-  birth:  { type: Date },
-  gender:  { type: String },
+  username:  { type: String, unique : true, required : true },
+  password:  { type: String, required : true  },
+  birth:  { type: Date, required : true  },
+  gender:  { type: String, required : true  },
   skills: [ { type: Schema.ObjectId, ref: 'Skill', default: ''} ],
   projects: [ 
               { 

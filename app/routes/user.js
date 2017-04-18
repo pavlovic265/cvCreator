@@ -121,12 +121,15 @@ router.post('/register', function(req, res){
                     });
     UserClass.createUser(newUser, function(err, user){
         if(err) {
-            throw err;
+            res.status(500).json({
+                errors: [{msg: 'Username already taken!'}]
+                
+            });
+        } else {
+            res.status(200).json({
+                msg: 'You are registred and can now login!'
+            });
         }
-    });
-
-    res.status(200).json({
-        msg: 'You are registred and can now login!'
     });
 });
 
