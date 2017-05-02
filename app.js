@@ -13,7 +13,7 @@ var moment            = require('moment');
 
 //Connect to mongo db
     mongoose.Promise = global.Promise;
-    mongoose.connect('mongodb://localhost/test_cvcreator');
+    mongoose.connect('mongodb://localhost/cvcreator');
 var db = mongoose.connection;
 var passport        = require('passport');
 var LocalStrategy   = require('passport-local').Strategy;
